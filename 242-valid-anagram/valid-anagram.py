@@ -1,7 +1,6 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         dict1 = {}
-        dict2 = {}
         if len(s) != len(t):
             return False
         for i in s:
@@ -11,12 +10,13 @@ class Solution:
                 dict1[i] +=1
                 
         for i in t:
-            if i not in dict2:
-                dict2[i] = 1
+            if i not in dict1:
+                return False
             else:
-                dict2[i] +=1
+                dict1[i] -=1
 
-        if dict1 == dict2:
-            return True
-        else:
-            return False
+        for i in dict1.values():
+            if i != 0:
+                return False
+
+        return True
